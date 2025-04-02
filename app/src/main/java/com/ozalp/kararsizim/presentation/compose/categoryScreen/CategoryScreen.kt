@@ -25,6 +25,7 @@ import com.ozalp.kararsizim.presentation.viewmodel.CategoryScreenViewModel
 fun CategoryScreen(
     modifier: Modifier = Modifier,
     categoryScreenViewModel: CategoryScreenViewModel,
+    goToItemInfo: (String) -> Unit,
 ) {
 
     val categoryScreenState = categoryScreenViewModel.categoryScreenState.value
@@ -60,7 +61,9 @@ fun CategoryScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(categoryScreenState.categories) { category ->
-                    CategoryItem(categoryName = category.category_name)
+                    CategoryItem(categoryName = category.category_name) {
+                        goToItemInfo(category.id.toString())
+                    }
                 }
             }
         else

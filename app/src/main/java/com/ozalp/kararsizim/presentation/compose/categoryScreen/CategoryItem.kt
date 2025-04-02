@@ -28,13 +28,13 @@ import com.ozalp.kararsizim.R
 
 
 @Composable
-fun CategoryItem(categoryName: String) {
+fun CategoryItem(categoryName: String, clickedItem: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
             .clickable {
-
+                clickedItem()
             },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
