@@ -48,7 +48,8 @@ android {
         }
     }
 }
-
+val koinComposeVersion = "4.0.3"
+val coilVersion = "2.2.2"
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -67,4 +68,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
+    implementation(libs.koin.androidx.compose)
+    implementation("io.coil-kt:coil-compose:$coilVersion")
+    implementation("io.coil-kt:coil-gif:$coilVersion")
 }
