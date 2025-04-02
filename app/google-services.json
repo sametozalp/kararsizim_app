@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "4068928874",
+    "project_id": "kararsizim-915db",
+    "storage_bucket": "kararsizim-915db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4068928874:android:0e281caf16a61599568913",
+        "android_client_info": {
+          "package_name": "com.ozalp.kararsizim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARE3pOtm77h9lg0LP_tL3nZczsG19GVjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
