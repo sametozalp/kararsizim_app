@@ -22,7 +22,7 @@ fun KararsizimApp(modifier: Modifier = Modifier) {
         NavHost(
             navController = navController,
             modifier = modifier.padding(innerPaddings),
-            startDestination = CategoryScreenDestination.routeWithArgs
+            startDestination = CategoryDetailScreenDestination.routeWithArgs
         ) {
 
             composable(CategoryScreenDestination.routeWithArgs) {
