@@ -1,4 +1,4 @@
-package com.ozalp.kararsizim.ui.theme
+package com.ozalp.kararsizim.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

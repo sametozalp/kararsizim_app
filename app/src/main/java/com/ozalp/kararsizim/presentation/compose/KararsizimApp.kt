@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ozalp.kararsizim.presentation.compose.categoryDetailScreen.CategoryDetailScreen
 import com.ozalp.kararsizim.presentation.compose.categoryScreen.CategoryScreen
+import com.ozalp.kararsizim.presentation.state.CategoryScreenState
 import com.ozalp.kararsizim.presentation.viewmodel.CategoryScreenViewModel
 import com.ozalp.kararsizim.util.CategoryDetailScreenDestination
 import com.ozalp.kararsizim.util.CategoryScreenDestination
@@ -29,7 +30,7 @@ fun KararsizimApp(modifier: Modifier = Modifier) {
 
             composable(CategoryScreenDestination.routeWithArgs) {
                 val categoryScreenViewModel: CategoryScreenViewModel = koinViewModel()
-                CategoryScreen()
+                CategoryScreen(categoryScreenViewModel = categoryScreenViewModel)
             }
 
             composable(CategoryDetailScreenDestination.routeWithArgs) {

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,15 +18,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ozalp.kararsizim.presentation.state.CategoryScreenState
+import com.ozalp.kararsizim.presentation.viewmodel.CategoryScreenViewModel
 
 @Composable
-fun CategoryScreen(modifier: Modifier = Modifier) {
+fun CategoryScreen(
+    modifier: Modifier = Modifier,
+    categoryScreenViewModel: CategoryScreenViewModel,
+) {
+
+    val categoryScreenState = categoryScreenViewModel.categoryScreenState.value
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
-            //.verticalScroll(rememberScrollState()),
+        //.verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -44,14 +53,18 @@ fun CategoryScreen(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(20.dp))
 
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(listOf("Yemek", "Film", "Kitap", "Spor", "Seyahat")) { category ->
-                CategoryItem(categoryName = category)
+
+        if (!categoryScreenState.isLoading)
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(categoryScreenState.categories) { category ->
+                    CategoryItem(categoryName = category.category_name)
+                }
             }
-        }
+        else
+            CircularProgressIndicator()
     }
 }
 
