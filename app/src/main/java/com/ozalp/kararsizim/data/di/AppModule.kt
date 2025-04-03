@@ -4,6 +4,7 @@ import com.ozalp.kararsizim.data.remote.api.CategoryAPI
 import com.ozalp.kararsizim.data.repository.CategoryRepositoryImpl
 import com.ozalp.kararsizim.domain.repository.CategoryRepository
 import com.ozalp.kararsizim.domain.usecase.getCategories.GetCategoriesUseCase
+import com.ozalp.kararsizim.presentation.viewmodel.CategoryDetailScreenViewModel
 import com.ozalp.kararsizim.presentation.viewmodel.CategoryScreenViewModel
 import com.ozalp.kararsizim.util.Constant
 import org.koin.core.module.dsl.viewModel
@@ -24,6 +25,10 @@ val appModule = module {
     viewModel {
         CategoryScreenViewModel(get())
     }
+    viewModel {
+        CategoryDetailScreenViewModel(get())
+    }
+
 
     single<CategoryRepository> {
         CategoryRepositoryImpl(get())

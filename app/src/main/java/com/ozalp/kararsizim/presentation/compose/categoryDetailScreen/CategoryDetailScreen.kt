@@ -21,9 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ozalp.kararsizim.presentation.compose.categoryScreen.CategoryScreen
+import com.ozalp.kararsizim.presentation.viewmodel.CategoryDetailScreenViewModel
 
 @Composable
-fun CategoryDetailScreen(modifier: Modifier = Modifier) {
+fun CategoryDetailScreen(modifier: Modifier = Modifier, viewModel: CategoryDetailScreenViewModel) {
 
     val localConfig = LocalConfiguration.current
     val screenHeight = localConfig.screenHeightDp
@@ -54,10 +55,4 @@ fun CategoryDetailScreen(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(20.dp))
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun Preview() {
-    CategoryDetailScreen()
 }

@@ -21,7 +21,10 @@ object CategoryDetailScreenDestination : Destination {
         get() = "Kategori"
     override val route: String
         get() = "category_detail"
+
+    const val argCategoryId = "categoryId"
+
     override val routeWithArgs: String
-        get() = route
+        get() = "$route/{$argCategoryId}"
 
 }
