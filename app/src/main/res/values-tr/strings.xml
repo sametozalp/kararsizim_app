@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kararsizim</string>
+
+    <string name="categories">Kategoriler</string>
+    <string name="unkown_error">Bilinmeyen hata, tekrar deneyin</string>
+    <string name="soon">Yakında..</string>
+
+
+</resources>

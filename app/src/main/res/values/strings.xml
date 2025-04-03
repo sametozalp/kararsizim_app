@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Kararsizim</string>
+
+    <string name="categories">Categories</string>
+    <string name="unkown_error">Unkown error, try again</string>
+    <string name="soon">Soon..</string>
 </resources>
