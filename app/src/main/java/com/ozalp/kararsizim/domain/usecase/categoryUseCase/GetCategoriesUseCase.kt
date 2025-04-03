@@ -1,4 +1,4 @@
-package com.ozalp.kararsizim.domain.usecase.getCategories
+package com.ozalp.kararsizim.domain.usecase.categoryUseCase
 
 import com.ozalp.kararsizim.domain.model.Category
 import com.ozalp.kararsizim.domain.repository.CategoryRepository

@@ -3,11 +3,9 @@ package com.ozalp.kararsizim.presentation.viewmodel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ozalp.kararsizim.data.remote.api.CategoryAPI
-import com.ozalp.kararsizim.domain.usecase.getCategories.GetCategoriesUseCase
+import com.ozalp.kararsizim.domain.usecase.categoryUseCase.GetCategoriesUseCase
 import com.ozalp.kararsizim.presentation.state.CategoryScreenState
 import com.ozalp.kararsizim.util.Resource
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class CategoryScreenViewModel(
