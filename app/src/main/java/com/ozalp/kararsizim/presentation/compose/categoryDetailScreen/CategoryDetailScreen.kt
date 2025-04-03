@@ -26,33 +26,38 @@ import com.ozalp.kararsizim.presentation.viewmodel.CategoryDetailScreenViewModel
 @Composable
 fun CategoryDetailScreen(modifier: Modifier = Modifier, viewModel: CategoryDetailScreenViewModel) {
 
+    val categoryScreenDetailState = viewModel.categoryScreenDetailState.value
+    val activity = categoryScreenDetailState.activity
+
     val localConfig = LocalConfiguration.current
     val screenHeight = localConfig.screenHeightDp
 
-    Box(modifier = modifier.fillMaxSize()) {
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier.height((screenHeight * 20 / 100).dp))
-            Text(
-                text = "Title",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = "açıklama",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            Spacer(modifier = Modifier.height(20.dp))
+    if (activity.size > 0) {
+        Box(modifier = modifier.fillMaxSize()) {
+            Column(
+                modifier = modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background)
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier.height((screenHeight * 20 / 100).dp))
+                Text(
+                    text = activity[0].activityTitle,
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    text = activity[0].activityDescription,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+            }
         }
     }
 }
