@@ -40,12 +40,7 @@ fun KararsizimApp(modifier: Modifier = Modifier) {
                 }
             }
 
-            composable(
-                CategoryDetailScreenDestination.routeWithArgs,
-                arguments = listOf(navArgument(CategoryDetailScreenDestination.argCategoryId) {
-                    type = NavType.StringType
-                })
-            ) {
+            composable(CategoryDetailScreenDestination.routeWithArgs) {
                 val categoryDetailScreenViewModel = koinViewModel<CategoryDetailScreenViewModel>()
                 CategoryDetailScreen(viewModel = categoryDetailScreenViewModel)
             }
