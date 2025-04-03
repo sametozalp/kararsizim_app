@@ -8,16 +8,15 @@ import com.ozalp.kararsizim.domain.usecase.activityUseCase.GetActivitiesUseCase
 import com.ozalp.kararsizim.presentation.state.CategoryScreenDetailState
 import com.ozalp.kararsizim.util.CategoryDetailScreenDestination
 import com.ozalp.kararsizim.util.Resource
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.math.BigInteger
 
 class CategoryDetailScreenViewModel(
     private val getActivitiesUseCase: GetActivitiesUseCase,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-    val categoryScreenDetailState = mutableStateOf(CategoryScreenDetailState())
+    var categoryScreenDetailState = mutableStateOf(CategoryScreenDetailState())
+        private set
 
     init {
         val categoryId: String =
@@ -40,7 +39,7 @@ class CategoryDetailScreenViewModel(
                         categoryScreenDetailState.value = categoryScreenDetailState.value.copy(
                             error = "",
                             isLoading = false,
-                            activity = it.data ?: arrayListOf()
+                            activityList = it.data ?: arrayListOf()
                         )
                     }
 
@@ -48,7 +47,7 @@ class CategoryDetailScreenViewModel(
                         categoryScreenDetailState.value = categoryScreenDetailState.value.copy(
                             error = it.message ?: "",
                             isLoading = false,
-                            activity = arrayListOf()
+                            activityList = arrayListOf()
                         )
                     }
 
@@ -56,11 +55,25 @@ class CategoryDetailScreenViewModel(
                         categoryScreenDetailState.value = categoryScreenDetailState.value.copy(
                             error = "",
                             isLoading = true,
-                            activity = arrayListOf()
+                            activityList = arrayListOf()
                         )
                     }
                 }
             }
+        }
+    }
+
+    fun changeActivity() {
+        try {
+            var i = categoryScreenDetailState.value.index + 1
+
+            if (categoryScreenDetailState.value.activityList.size - 1 < i)
+                i = 0
+
+            categoryScreenDetailState.value =
+                categoryScreenDetailState.value.copy(index = (i))
+        } catch (e: Exception) {
+            println(e.localizedMessage)
         }
     }
 }
