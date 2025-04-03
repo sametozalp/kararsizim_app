@@ -5,5 +5,5 @@ import java.math.BigInteger
 
 interface ActivityRepository {
 
-    fun getActivities(categoryId: Int): List<ActivityDto>
+    suspend fun getActivities(categoryId: String): List<ActivityDto>
 }

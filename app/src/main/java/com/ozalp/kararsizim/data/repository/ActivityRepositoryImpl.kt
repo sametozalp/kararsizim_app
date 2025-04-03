@@ -6,8 +6,8 @@ import com.ozalp.kararsizim.domain.repository.ActivityRepository
 import java.math.BigInteger
 
 class ActivityRepositoryImpl(val api: ActivityAPI) : ActivityRepository {
-    override fun getActivities(categoryId: Int): List<ActivityDto> {
-        return api.getActivities(categoryId)
+    override suspend fun getActivities(categoryId: String): List<ActivityDto> {
+        return api.getActivities("eq."+categoryId)
     }
 
 }

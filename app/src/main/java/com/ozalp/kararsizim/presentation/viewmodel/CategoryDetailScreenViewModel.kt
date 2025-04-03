@@ -34,7 +34,7 @@ class CategoryDetailScreenViewModel(
         if (categoryScreenDetailState.value.isLoading) return
 
         viewModelScope.launch {
-            getActivitiesUseCase(Integer.valueOf(categoryScreenDetailState.value.categoryId)).collect {
+            getActivitiesUseCase(categoryScreenDetailState.value.categoryId).collect {
                 when (it) {
                     is Resource.Success -> {
                         categoryScreenDetailState.value = categoryScreenDetailState.value.copy(
@@ -42,9 +42,6 @@ class CategoryDetailScreenViewModel(
                             isLoading = false,
                             activity = it.data ?: arrayListOf()
                         )
-
-                        println(it)
-
                     }
 
                     is Resource.Error -> {
@@ -53,9 +50,6 @@ class CategoryDetailScreenViewModel(
                             isLoading = false,
                             activity = arrayListOf()
                         )
-                        println(it.message)
-
-
                     }
 
                     is Resource.Loading -> {
@@ -64,8 +58,6 @@ class CategoryDetailScreenViewModel(
                             isLoading = true,
                             activity = arrayListOf()
                         )
-                        println(it)
-
                     }
                 }
             }

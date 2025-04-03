@@ -12,7 +12,7 @@ import java.math.BigInteger
 
 class GetActivitiesUseCase(private val acitivityRepository: ActivityRepository) {
 
-    suspend operator fun invoke(categoryId: Int): Flow<Resource<List<Activity>>> = flow {
+    suspend operator fun invoke(categoryId: String): Flow<Resource<List<Activity>>> = flow {
         emit(Resource.Loading())
 
         val activityList =
