@@ -18,7 +18,7 @@ import com.ozalp.kararsizim.R
 import com.ozalp.kararsizim.presentation.viewmodel.HaveAProblemScreenViewModel
 
 @Composable
-fun HaveAProblemScreen(viewModel: HaveAProblemScreenViewModel, navController: NavController) {
+fun HaveAProblemScreen(viewModel: HaveAProblemScreenViewModel, goToBack: () -> Unit) {
 
     var textField by remember { mutableStateOf("") }
     val context = LocalContext.current
@@ -28,7 +28,7 @@ fun HaveAProblemScreen(viewModel: HaveAProblemScreenViewModel, navController: Na
 
     LaunchedEffect(screenState.value.success) {
         if (screenState.value.success == true) {
-            navController.popBackStack()
+            goToBack()
         } else if (screenState.value.success == false) {
             Toast.makeText(
                 context,
@@ -37,7 +37,6 @@ fun HaveAProblemScreen(viewModel: HaveAProblemScreenViewModel, navController: Na
             ).show()
         }
     }
-
 
     Box(
         modifier = Modifier

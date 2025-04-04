@@ -55,7 +55,9 @@ fun KararsizimApp(modifier: Modifier = Modifier) {
 
             composable(HaveAProblemDestination.routeWithArgs) {
                 val haveAProblemScreenViewModel = koinViewModel<HaveAProblemScreenViewModel>()
-                HaveAProblemScreen(viewModel = haveAProblemScreenViewModel, navController)
+                HaveAProblemScreen(viewModel = haveAProblemScreenViewModel) {
+                    navController.popBackStack()
+                }
             }
         }
     }

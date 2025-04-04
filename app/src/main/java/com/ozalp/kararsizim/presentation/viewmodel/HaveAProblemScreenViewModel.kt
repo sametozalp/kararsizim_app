@@ -18,8 +18,9 @@ class HaveAProblemScreenViewModel(private val sendMessageUseCase: SendMessageUse
     fun sendMessage(context: Context, message: String) {
         viewModelScope.launch {
 
+            val baseMessage = "Kararsizim app:\n" + message
             try {
-                val response = sendMessageUseCase(message)
+                val response = sendMessageUseCase(baseMessage)
 
                 if (response.isSuccessful) {
                     _screenState.value = _screenState.value.copy(success = true, error = "")
