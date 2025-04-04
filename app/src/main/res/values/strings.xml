@@ -4,4 +4,6 @@
     <string name="categories">Categories</string>
     <string name="unkown_error">Unkown error, try again</string>
     <string name="soon">Soon..</string>
+    <string name="contact_us">Contact us</string>
+    <string name="send">Send</string>
 </resources>

@@ -5,6 +5,8 @@
     <string name="categories">Kategoriler</string>
     <string name="unkown_error">Bilinmeyen hata, tekrar deneyin</string>
     <string name="soon">Yakında..</string>
+    <string name="contact_us">Bizimle iletişime geçin</string>
+    <string name="send">Gönder</string>
 
 
 </resources>
