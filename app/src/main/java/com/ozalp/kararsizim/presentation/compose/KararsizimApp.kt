@@ -36,11 +36,16 @@ fun KararsizimApp(modifier: Modifier = Modifier) {
 
             composable(CategoryScreenDestination.routeWithArgs) {
                 val categoryScreenViewModel: CategoryScreenViewModel = koinViewModel()
-                CategoryScreen(categoryScreenViewModel = categoryScreenViewModel) { categoryId ->
+                CategoryScreen(
+                    categoryScreenViewModel = categoryScreenViewModel,
+                    goToHaveAProblemScreen = {
+                        navController.navigate(HaveAProblemDestination.routeWithArgs)
+                    },
+                    goToItemInfo = { categoryId ->
 
-                    navController.navigate(CategoryDetailScreenDestination.route + "/" + categoryId)
+                        navController.navigate(CategoryDetailScreenDestination.route + "/" + categoryId)
 
-                }
+                    })
             }
 
             composable(CategoryDetailScreenDestination.routeWithArgs) {

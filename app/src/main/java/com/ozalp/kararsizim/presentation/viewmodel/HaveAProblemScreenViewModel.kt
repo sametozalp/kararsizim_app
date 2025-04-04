@@ -18,17 +18,27 @@ class HaveAProblemScreenViewModel(private val sendMessageUseCase: SendMessageUse
     fun sendMessage(context: Context, message: String) {
         viewModelScope.launch {
 
-            val response = sendMessageUseCase(message)
+            try {
+                val response = sendMessageUseCase(message)
 
-            if (response.isSuccessful) {
-                _screenState.value = _screenState.value.copy(success = true, error = "")
-            } else {
+                if (response.isSuccessful) {
+                    _screenState.value = _screenState.value.copy(success = true, error = "")
+                } else {
+                    _screenState.value = _screenState.value.copy(
+                        success = false, error = context.getString(
+                            R.string.unkown_error
+                        )
+                    )
+                }
+            } catch (e: Exception) {
+                println(e.localizedMessage)
                 _screenState.value = _screenState.value.copy(
                     success = false, error = context.getString(
                         R.string.unkown_error
                     )
                 )
             }
+
         }
     }
 }

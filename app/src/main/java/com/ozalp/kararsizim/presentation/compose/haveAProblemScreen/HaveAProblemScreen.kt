@@ -1,5 +1,6 @@
 package com.ozalp.kararsizim.presentation.compose.haveAProblemScreen
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -23,9 +24,20 @@ fun HaveAProblemScreen(viewModel: HaveAProblemScreenViewModel, navController: Na
     val context = LocalContext.current
     val screenState = viewModel.screenState
 
-    if (screenState.value.success) {
-        navController.popBackStack()
+    val errorMessage = stringResource(R.string.unkown_error)
+
+    LaunchedEffect(screenState.value.success) {
+        if (screenState.value.success == true) {
+            navController.popBackStack()
+        } else if (screenState.value.success == false) {
+            Toast.makeText(
+                context,
+                errorMessage,
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
+
 
     Box(
         modifier = Modifier
@@ -63,7 +75,6 @@ fun HaveAProblemScreen(viewModel: HaveAProblemScreenViewModel, navController: Na
             Button(
                 onClick = {
                     viewModel.sendMessage(context = context, textField)
-                    textField = "" // opsiyonel: gönderim sonrası alanı temizle
                 },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = textField.isNotBlank()

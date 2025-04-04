@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,60 +31,75 @@ fun CategoryScreen(
     modifier: Modifier = Modifier,
     categoryScreenViewModel: CategoryScreenViewModel,
     goToItemInfo: (String) -> Unit,
+    goToHaveAProblemScreen: () -> Unit,
 ) {
 
     val categoryScreenState = categoryScreenViewModel.categoryScreenState.value
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
-        //.verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Text(
-            text = stringResource(R.string.app_name),
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            text = stringResource(R.string.categories),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = MaterialTheme.colorScheme.onBackground
-        )
-        Spacer(modifier = Modifier.height(20.dp))
 
-        if (categoryScreenState.error.isNotEmpty()) {
-            Box(modifier = modifier.fillMaxSize()) {
-                Text(
-                    text = stringResource(R.string.unkown_error),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    modifier = modifier.align(Alignment.Center)
-                )
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(16.dp),
+            //.verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = stringResource(R.string.app_name),
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                text = stringResource(R.string.categories),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+
+            if (categoryScreenState.error.isNotEmpty()) {
+                Box(modifier = modifier.fillMaxSize()) {
+                    Text(
+                        text = stringResource(R.string.unkown_error),
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = modifier.align(Alignment.Center)
+                    )
+                }
+
             }
 
-        }
-
-        if (!categoryScreenState.isLoading)
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                items(categoryScreenState.categories) { category ->
-                    CategoryItem(categoryName = category.category_name) {
-                        goToItemInfo(category.id.toString())
+            if (!categoryScreenState.isLoading)
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(categoryScreenState.categories) { category ->
+                        CategoryItem(categoryName = category.category_name) {
+                            goToItemInfo(category.id.toString())
+                        }
                     }
                 }
-            }
-        else
-            CircularProgressIndicator()
+            else
+                CircularProgressIndicator()
+        }
+
+        FloatingActionButton(
+            onClick = {
+                goToHaveAProblemScreen()
+            }, modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(16.dp)
+        ) {
+            Text(text = stringResource(R.string.contact_us), modifier = Modifier.padding(15.dp))
+        }
     }
 }
-
